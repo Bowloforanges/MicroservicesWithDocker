@@ -14,6 +14,7 @@ public class CreateUserController : ControllerBase
     public CreateUserController(ILogger<GetUserController> logger) => (_logger) = (logger);
 
     [HttpPost("users")]
+    //UseAuthorization
     public async Task<IActionResult> CreateUser(CreateUserRequestDTO createUserRequest)
     {
         await Task.Delay(1);

@@ -13,6 +13,7 @@ public class GetUsersController : ControllerBase
     public GetUsersController(ILogger<GetUserController> logger) => (_logger) = (logger);
 
     [HttpGet("users")]
+    //UseAuthorization
     public async Task<IActionResult> GetAllUsers()
     {
         await Task.Delay(1);

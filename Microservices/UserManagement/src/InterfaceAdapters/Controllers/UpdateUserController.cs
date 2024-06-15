@@ -13,7 +13,8 @@ public class UpdateUserController : ControllerBase
     public UpdateUserController(ILogger<GetUserController> logger) => (_logger) = (logger);
 
     [HttpPut("users/{userId}")]
-    public async Task<IActionResult> GetAllUsers(Guid userId)
+    //UseAuthorization
+    public async Task<IActionResult> UpdateUser(Guid userId)
     {
         await Task.Delay(1);
 
