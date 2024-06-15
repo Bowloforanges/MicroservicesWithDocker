@@ -6,19 +6,19 @@ namespace Controllers;
 
 [ApiController]
 [Route("api/v1")]
-public class GetUserController : ControllerBase
+public class DeleteUsersController : ControllerBase
 {
     private readonly ILogger<GetUserController> _logger;
 
-    public GetUserController(ILogger<GetUserController> logger) => (_logger) = (logger);
+    public DeleteUsersController(ILogger<GetUserController> logger) => (_logger) = (logger);
 
-    [HttpGet("users/{userId}")]
+    [HttpDelete("users/{userId}")]
     //UseAuthorization
-    public async Task<IActionResult> GetUserById(Guid userId)
+    public async Task<IActionResult> DeleteUser(Guid userId)
     {
         await Task.Delay(1);
 
-        _logger.LogInformation($"{GetType().Name} - User with userId: {userId}");
+        _logger.LogInformation($"{GetType().Name} - Deleted user with id {userId}");
 
         GenericHttpResponse response = new GenericHttpResponse();
         return Ok(response);
