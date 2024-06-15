@@ -12,12 +12,12 @@ public class GetUserController : ControllerBase
 
     public GetUserController(ILogger<GetUserController> logger) => (_logger) = (logger);
 
-    [HttpGet("users/{id}")]
-    public async Task<IActionResult> GetUserById(Guid id)
+    [HttpGet("users/{userId}")]
+    public async Task<IActionResult> GetUserById(Guid userId)
     {
         await Task.Delay(1);
 
-        _logger.LogInformation($"{GetType().Name} - User with userId: {id}");
+        _logger.LogInformation($"{GetType().Name} - User with userId: {userId}");
 
         GenericHttpResponse response = new GenericHttpResponse();
         return Ok(response);
