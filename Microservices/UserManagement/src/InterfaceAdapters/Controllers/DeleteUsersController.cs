@@ -20,7 +20,7 @@ public class DeleteUsersController : ControllerBase
 
         _logger.LogInformation($"{GetType().Name} - Deleted user with id {userId}");
 
-        GenericHttpResponse response = new GenericHttpResponse();
+        GenericHttpResponse response = new GenericHttpResponse() { Message = "", StatusCode = 200 };
         return Ok(response);
     }
 }

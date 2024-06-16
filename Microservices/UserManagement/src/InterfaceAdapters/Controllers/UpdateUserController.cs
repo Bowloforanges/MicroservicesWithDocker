@@ -20,7 +20,7 @@ public class UpdateUserController : ControllerBase
 
         _logger.LogInformation($"{GetType().Name} - Updated user with id {userId}");
 
-        GenericHttpResponse response = new GenericHttpResponse();
+        GenericHttpResponse response = new GenericHttpResponse() { Message = "", StatusCode = 200 };
         return Ok(response);
     }
 }
