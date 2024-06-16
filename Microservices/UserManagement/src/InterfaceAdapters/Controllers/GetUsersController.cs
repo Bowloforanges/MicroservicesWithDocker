@@ -21,7 +21,7 @@ public class GetUsersController : ControllerBase
             $"{GetType().Name} - This is a list of users: [user1, user2, user3, ..., userN]"
         );
 
-        GenericHttpResponse response = new GenericHttpResponse();
+        GenericHttpResponse response = new GenericHttpResponse() { Message = "", StatusCode = 200 };
         return Ok(response);
     }
 }
