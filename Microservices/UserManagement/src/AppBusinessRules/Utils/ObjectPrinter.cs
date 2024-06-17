@@ -4,24 +4,24 @@ using Utils.Extensions;
 
 namespace Utils;
 
-public static class ObjectPrinter
+public static class ObjectPrinter<T>
 {
-    public static string Print(object obj)
+    public static Dictionary<string, object> GetProperties(T inputObject)
     {
-        if (obj == null)
-            return "{}";
+        if (inputObject == null)
+            return [];
 
-        var properties = obj.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
+        var properties = inputObject
+            .GetType()
+            .GetProperties(BindingFlags.Public | BindingFlags.Instance);
         var propertyDictionary = new Dictionary<string, object>();
 
         foreach (var property in properties)
         {
-            var value = property.GetValue(obj, null);
+            var value = property.GetValue(inputObject, null);
             propertyDictionary.Add(property.Name, value ?? "");
         }
 
-        string result = $"{obj.GetType().Name}: {ObjectExtensions.Serialize(propertyDictionary)}";
-
-        return result;
+        return propertyDictionary;
     }
 }

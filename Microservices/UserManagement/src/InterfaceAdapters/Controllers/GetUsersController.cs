@@ -1,4 +1,5 @@
-﻿using Entities;
+﻿using DTO;
+using Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -17,11 +18,18 @@ public class GetUsersController : ControllerBase
     public async Task<IActionResult> GetAllUsers()
     {
         await Task.Delay(1);
-        _logger.LogInformation(
-            $"{GetType().Name} - This is a list of users: [user1, user2, user3, ..., userN]"
-        );
+        _logger.LogInformation("All users.");
 
-        GenericHttpResponse response = new GenericHttpResponse() { Message = "", StatusCode = 200 };
+        //get from db, implement pagination
+
+        List<UserListElementResponseDTO> responseData = new List<UserListElementResponseDTO>();
+
+        GenericHttpResponse response = new GenericHttpResponse()
+        {
+            Message = "",
+            StatusCode = 200,
+            Data = responseData
+        };
         return Ok(response);
     }
 }

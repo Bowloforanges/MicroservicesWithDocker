@@ -1,4 +1,5 @@
-﻿using Entities;
+﻿using DTO;
+using Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -14,13 +15,28 @@ public class UpdateUserController : ControllerBase
 
     [HttpPut("users/{userId}")]
     //UseAuthorization
-    public async Task<IActionResult> UpdateUser(Guid userId)
+    public async Task<IActionResult> UpdateUser(UpdateUserRequestDTO userToUpdate)
     {
         await Task.Delay(1);
 
-        _logger.LogInformation($"{GetType().Name} - Updated user with id {userId}");
+        _logger.LogInformation($"Updated user.");
 
-        GenericHttpResponse response = new GenericHttpResponse() { Message = "", StatusCode = 200 };
+        // update user data
+
+        UserResponseDTO responseData = new UserResponseDTO()
+        {
+            Username = userToUpdate.Username,
+            Email = userToUpdate.Email,
+            CreatedAt = DateTime.Now
+        };
+
+        GenericHttpResponse response = new GenericHttpResponse()
+        {
+            Message = "",
+            StatusCode = 200,
+            Data = responseData
+        };
+
         return Ok(response);
     }
 }

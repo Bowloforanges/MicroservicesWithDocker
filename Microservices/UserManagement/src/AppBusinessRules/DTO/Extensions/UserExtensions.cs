@@ -18,7 +18,35 @@ public static class UserExtensions
                 requestDTO.Password!,
                 out byte[] passwordSaltBytes
             ),
-            PasswordSalt = passwordSaltBytes
+            PasswordSalt = passwordSaltBytes,
+            CreatedAt = DateTime.UtcNow
         };
+    }
+
+    public static UserResponseDTO ToUserResponseDTO(this User userData)
+    {
+        return new UserResponseDTO()
+        {
+            Username = userData.Username,
+            Email = userData.Email,
+            CreatedAt = userData.CreatedAt
+        };
+    }
+
+    public static List<UserListElementResponseDTO> ToUserListElementDTO(this List<User> users)
+    {
+        List<UserListElementResponseDTO> userList = [];
+
+        userList = users
+            .Select(u => new UserListElementResponseDTO()
+            {
+                Guid = u.Guid,
+                Username = u.Username,
+                Email = u.Email,
+                CreatedAt = u.CreatedAt
+            })
+            .ToList();
+
+        return userList;
     }
 }

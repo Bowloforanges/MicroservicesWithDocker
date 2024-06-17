@@ -21,8 +21,6 @@ var runtime = configuration.RuntimeEnvironment();
 // Add services to the container.
 builder.Services.AddDependencies(configuration, isDevelopment, runtime);
 
-//builder.Services.AddEndpointsApiExplorer();
-
 if (isDevelopment)
 {
     builder.Services.AddSwaggerGen();
