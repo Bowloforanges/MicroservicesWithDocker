@@ -4,7 +4,6 @@ using Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Utils;
 
 namespace Controllers;
 
@@ -13,8 +12,9 @@ namespace Controllers;
 public class CreateUserController : ControllerBase
 {
     private readonly ILogger<GetUserController> _logger;
+    private readonly IUseCaseInputPort<CreateUserController> _inputPort;
 
-    public CreateUserController(ILogger<GetUserController> logger) => (_logger) = (logger);
+    public CreateUserController(ILogger<GetUserController> logger IUseCaseInputPort<CreateUserController> inputPort) => (_logger, _inputPort) = (logger, inputPort);
 
     [HttpPost("users")]
     [AllowAnonymous]

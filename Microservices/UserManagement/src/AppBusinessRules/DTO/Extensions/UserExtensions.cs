@@ -1,11 +1,11 @@
 using Entities;
 using Utils;
 
-namespace DTO.Extensions;
+namespace Dto.Extensions;
 
 public static class UserExtensions
 {
-    public static User ToUser(this CreateUserRequestDTO requestDTO)
+    public static User ToUser(this CreateUserRequestDto requestDTO)
     {
         PasswordUtils passwordUtils = new PasswordUtils();
 
@@ -23,9 +23,9 @@ public static class UserExtensions
         };
     }
 
-    public static UserResponseDTO ToUserResponseDTO(this User userData)
+    public static UserResponseDto ToUserResponseDto(this User userData)
     {
-        return new UserResponseDTO()
+        return new UserResponseDto()
         {
             Username = userData.Username,
             Email = userData.Email,
@@ -33,12 +33,12 @@ public static class UserExtensions
         };
     }
 
-    public static List<UserListElementResponseDTO> ToUserListElementDTO(this List<User> users)
+    public static List<UserListElementResponseDto> ToUserListElementDTO(this List<User> users)
     {
-        List<UserListElementResponseDTO> userList = [];
+        List<UserListElementResponseDto> userList = [];
 
         userList = users
-            .Select(u => new UserListElementResponseDTO()
+            .Select(u => new UserListElementResponseDto()
             {
                 Guid = u.Guid,
                 Username = u.Username,
