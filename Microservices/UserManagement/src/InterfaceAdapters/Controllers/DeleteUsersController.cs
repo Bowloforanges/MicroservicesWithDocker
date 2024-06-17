@@ -18,9 +18,15 @@ public class DeleteUsersController : ControllerBase
     {
         await Task.Delay(1);
 
-        _logger.LogInformation($"{GetType().Name} - Deleted user with id {userId}");
+        _logger.LogInformation("Deleted user.");
 
-        GenericHttpResponse response = new GenericHttpResponse() { Message = "", StatusCode = 200 };
+        GenericHttpResponse response = new GenericHttpResponse()
+        {
+            Message = "User deleted.",
+            StatusCode = 200,
+            Data = userId
+        };
+
         return Ok(response);
     }
 }

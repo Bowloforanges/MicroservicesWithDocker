@@ -22,7 +22,7 @@ public static class ConfigurationExtensions
         //app.UseMiddleware<MIDDLEWARECLASS>();
 
         //app.UseAuthentication();
-        //app.UseAuthorization();
+        app.UseAuthorization();
         app.UseHttpsRedirection();
         app.UseCors("AllowAllOrigins");
         app.MapControllers();

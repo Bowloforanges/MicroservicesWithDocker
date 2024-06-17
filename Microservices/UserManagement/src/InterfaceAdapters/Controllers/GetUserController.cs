@@ -1,3 +1,4 @@
+using DTO;
 using Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -18,9 +19,24 @@ public class GetUserController : ControllerBase
     {
         await Task.Delay(1);
 
-        _logger.LogInformation($"{GetType().Name} - User with userId: {userId}");
+        _logger.LogInformation($"User with userId: {userId}");
 
-        GenericHttpResponse response = new GenericHttpResponse() { Message = "", StatusCode = 200 };
+        //get user from DB
+
+        UserResponseDTO responseData = new UserResponseDTO()
+        {
+            Username = "dummy_username",
+            Email = "dummy@email.com",
+            CreatedAt = DateTime.UtcNow
+        };
+
+        GenericHttpResponse response = new GenericHttpResponse()
+        {
+            Message = "",
+            StatusCode = 200,
+            Data = responseData
+        };
+
         return Ok(response);
     }
 }
