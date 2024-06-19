@@ -1,6 +1,6 @@
-using Dtos.Abstractions;
+using Dto.Abstractions;
 
-namespace Dtos;
+namespace Dto;
 
 public class CreateUserRequestDto : DtoBase
 {

@@ -1,4 +1,4 @@
-using Dtos;
+using Dto;
 using Microsoft.Extensions.DependencyInjection;
 using ServiceImplementations.InputPorts;
 using ServiceInterfaces;
@@ -11,6 +11,7 @@ public static class DependencyContainer
     {
         services.AddScoped<IUseCaseInputPort<CreateUserRequestDto>, CreateUserInteractor>();
         services.AddScoped<IUseCaseInputPort<GetUserRequestDto>, GetUserInteractor>();
+        services.AddScoped<IUseCaseInputPort<GetAllUsersRequestDto>, GetAllUsersInteractor>();
 
         return services;
     }

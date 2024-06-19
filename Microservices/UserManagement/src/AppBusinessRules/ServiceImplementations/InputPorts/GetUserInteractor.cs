@@ -1,4 +1,4 @@
-using Dtos;
+using Dto;
 using Entities;
 using Microsoft.Extensions.Logging;
 using ServiceInterfaces;
@@ -9,21 +9,13 @@ public class GetUserInteractor : IUseCaseInputPort<GetUserRequestDto>
 {
     private readonly ILogger<GetUserInteractor> _logger;
     private readonly IRetrievalRepository<User> _repository;
-    private readonly IUnitOfWork<User> _unitOfWork;
-    private readonly IUseCaseOutputPort<GetUserRequestDto> _outputPort;
+    private readonly IUseCaseOutputPort<User> _outputPort;
 
     public GetUserInteractor(
         ILogger<GetUserInteractor> logger,
         IRetrievalRepository<User> repository,
-        IUnitOfWork<User> unitOfWork,
-        IUseCaseOutputPort<GetUserRequestDto> outputPort
-    ) =>
-        (_logger, _repository, _unitOfWork, _outputPort) = (
-            logger,
-            repository,
-            unitOfWork,
-            outputPort
-        );
+        IUseCaseOutputPort<User> outputPort
+    ) => (_logger, _repository, _outputPort) = (logger, repository, outputPort);
 
     public async Task<GenericHttpResponse> Handle(GetUserRequestDto inputData)
     {

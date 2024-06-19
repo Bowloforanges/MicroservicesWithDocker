@@ -1,4 +1,5 @@
-using Dtos;
+using Dto;
+using Entities;
 using Microsoft.Extensions.DependencyInjection;
 using ServiceInterfaces;
 
@@ -8,8 +9,8 @@ public static class DependencyContainer
 {
     public static IServiceCollection AddPresenters(this IServiceCollection services)
     {
-        services.AddScoped<IUseCaseOutputPort<CreateUserRequestDto>, CreateUserPresenter>();
-        services.AddScoped<IUseCaseOutputPort<GetUserRequestDto>, GetUserPresenter>();
+        services.AddScoped<IUseCaseOutputPort<User>, UserPresenter>();
+        services.AddScoped<IUseCaseOutputPort<List<User>>, UsersPresenter>();
 
         return services;
     }
