@@ -35,11 +35,7 @@ public static class MockedEntities
             CreatedAt = DateTime.MinValue,
         };
 
-        List<User> users = [];
-
-        users.Add(user1);
-        users.Add(user2);
-        users.Add(user3);
+        List<User> users = [user1, user2, user3];
 
         return users;
     }

@@ -1,4 +1,4 @@
-using Dtos;
+﻿using Dto;
 using Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -24,8 +24,6 @@ public class CreateUserController : ControllerBase
     //UseAuthorization
     public async Task<IActionResult> CreateUser(CreateUserRequestDto createUserRequest)
     {
-        await Task.Delay(1);
-
         _logger.LogInformation("User created.");
 
         //store here

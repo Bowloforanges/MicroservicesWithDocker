@@ -1,7 +1,8 @@
-using Dtos;
+using Dto;
 using Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using ServiceInterfaces;
 
 namespace Controllers;
 
@@ -10,8 +11,12 @@ namespace Controllers;
 public class GetUsersController : ControllerBase
 {
     private readonly ILogger<GetUserController> _logger;
+    private readonly IUseCaseInputPort<GetAllUsersRequestDto> _interactor;
 
-    public GetUsersController(ILogger<GetUserController> logger) => (_logger) = (logger);
+    public GetUsersController(
+        ILogger<GetUserController> logger,
+        IUseCaseInputPort<GetAllUsersRequestDto> interactor
+    ) => (_logger, _interactor) = (logger, interactor);
 
     [HttpGet("users")]
     //UseAuthorization
@@ -21,15 +26,8 @@ public class GetUsersController : ControllerBase
         _logger.LogInformation("All users.");
 
         //get from db, implement pagination
+        var result = await _interactor.Handle(new GetAllUsersRequestDto());
 
-        List<UserListElementResponseDto> responseData = new List<UserListElementResponseDto>();
-
-        GenericHttpResponse response = new GenericHttpResponse()
-        {
-            Message = "",
-            StatusCode = 200,
-            Data = responseData
-        };
-        return Ok(response);
+        return Ok(result);
     }
 }

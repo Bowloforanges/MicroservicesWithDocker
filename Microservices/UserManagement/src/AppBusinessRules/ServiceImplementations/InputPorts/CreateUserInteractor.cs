@@ -1,5 +1,5 @@
-using Dtos;
-using Dtos.Extensions;
+using Dto;
+using Dto.Extensions;
 using Entities;
 using Microsoft.Extensions.Logging;
 using ServiceInterfaces;
@@ -11,13 +11,13 @@ public class CreateUserInteractor : IUseCaseInputPort<CreateUserRequestDto>
     private readonly ILogger<CreateUserInteractor> _logger;
     private readonly ICreationRepository<User> _repository;
     private readonly IUnitOfWork<User> _unitOfWork;
-    private readonly IUseCaseOutputPort<CreateUserRequestDto> _outputPort;
+    private readonly IUseCaseOutputPort<User> _outputPort;
 
     public CreateUserInteractor(
         ILogger<CreateUserInteractor> logger,
         ICreationRepository<User> repository,
         IUnitOfWork<User> unitOfWork,
-        IUseCaseOutputPort<CreateUserRequestDto> outputPort
+        IUseCaseOutputPort<User> outputPort
     ) =>
         (_logger, _repository, _unitOfWork, _outputPort) = (
             logger,
@@ -29,11 +29,9 @@ public class CreateUserInteractor : IUseCaseInputPort<CreateUserRequestDto>
     public async Task<GenericHttpResponse> Handle(CreateUserRequestDto inputData)
     {
         User userData = inputData.ToUser();
+
         var result = await _repository.Create(userData);
-
-        //commit here
         //_unitOfWork.Commit();
-
 
         return await _outputPort.Handle(result);
         ;

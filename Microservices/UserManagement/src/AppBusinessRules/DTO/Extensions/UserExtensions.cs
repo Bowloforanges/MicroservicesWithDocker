@@ -1,7 +1,7 @@
 using Entities;
 using Utils;
 
-namespace Dtos.Extensions;
+namespace Dto.Extensions;
 
 public static class UserExtensions
 {
