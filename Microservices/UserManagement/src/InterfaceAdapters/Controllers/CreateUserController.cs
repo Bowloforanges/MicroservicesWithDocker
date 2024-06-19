@@ -1,10 +1,9 @@
-﻿using DTO;
-using DTO.Extensions;
+﻿using Dto;
 using Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Utils;
+using ServiceInterfaces;
 
 namespace Controllers;
 
@@ -13,32 +12,25 @@ namespace Controllers;
 public class CreateUserController : ControllerBase
 {
     private readonly ILogger<GetUserController> _logger;
+    private readonly IUseCaseInputPort<CreateUserRequestDto> _interactor;
 
-    public CreateUserController(ILogger<GetUserController> logger) => (_logger) = (logger);
+    public CreateUserController(
+        ILogger<GetUserController> logger,
+        IUseCaseInputPort<CreateUserRequestDto> interactor
+    ) => (_logger, _interactor) = (logger, interactor);
 
     [HttpPost("users")]
     [AllowAnonymous]
     //UseAuthorization
-    public async Task<IActionResult> CreateUser(CreateUserRequestDTO createUserRequest)
+    public async Task<IActionResult> CreateUser(CreateUserRequestDto createUserRequest)
     {
         await Task.Delay(1);
 
         _logger.LogInformation("User created.");
 
-        User user = createUserRequest.ToUser();
-
         //store here
+        var result = await _interactor.Handle(createUserRequest);
 
-        //generate response here
-        var responseData = user.ToUserResponseDTO();
-
-        GenericHttpResponse response = new GenericHttpResponse()
-        {
-            Message = "User created.",
-            StatusCode = 201,
-            Data = responseData
-        };
-
-        return Ok(response);
+        return Ok(result);
     }
 }

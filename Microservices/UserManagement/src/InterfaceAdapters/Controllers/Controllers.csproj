@@ -11,7 +11,8 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\AppBusinessRules\DTO\DTO.csproj" />
     <ProjectReference Include="..\..\SharedKernel\Entities\Entities.csproj" />
+    <ProjectReference Include="..\..\AppBusinessRules\ServiceInterfaces\ServiceInterfaces.csproj" />
+    <ProjectReference Include="..\..\AppBusinessRules\DTO\DTO.csproj" />
   </ItemGroup>
 </Project>

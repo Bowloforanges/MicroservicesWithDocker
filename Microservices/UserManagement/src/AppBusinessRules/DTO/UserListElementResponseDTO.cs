@@ -1,6 +1,6 @@
-namespace DTO;
+namespace Dto;
 
-public class UserListElementResponseDTO : UserResponseDTO
+public class UserListElementResponseDto : UserResponseDto
 {
     public Guid Guid { get; set; }
 }

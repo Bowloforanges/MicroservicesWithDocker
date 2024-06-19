@@ -1,6 +1,8 @@
-namespace DTO;
+using Dto.Abstractions;
 
-public class CreateUserRequestDTO
+namespace Dto;
+
+public class CreateUserRequestDto : DtoBase
 {
     public string? Username { get; init; }
     public string? Email { get; init; }

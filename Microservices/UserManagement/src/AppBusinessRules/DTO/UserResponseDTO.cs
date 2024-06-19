@@ -1,6 +1,8 @@
-namespace DTO;
+using Dto.Abstractions;
 
-public class UserResponseDTO
+namespace Dto;
+
+public class UserResponseDto : DtoBase
 {
     public string? Username { get; init; }
     public string? Email { get; init; }
