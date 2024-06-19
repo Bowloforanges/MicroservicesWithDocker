@@ -1,4 +1,4 @@
-using DTO;
+using Dto;
 using Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -23,7 +23,7 @@ public class GetUserController : ControllerBase
 
         //get user from DB
 
-        UserResponseDTO responseData = new UserResponseDTO()
+        UserResponseDto responseData = new UserResponseDto()
         {
             Username = "dummy_username",
             Email = "dummy@email.com",

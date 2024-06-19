@@ -1,4 +1,4 @@
-﻿using DTO;
+﻿using Dto;
 using Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -15,7 +15,7 @@ public class UpdateUserController : ControllerBase
 
     [HttpPut("users/{userId}")]
     //UseAuthorization
-    public async Task<IActionResult> UpdateUser(UpdateUserRequestDTO userToUpdate)
+    public async Task<IActionResult> UpdateUser(UpdateUserRequestDto userToUpdate)
     {
         await Task.Delay(1);
 
@@ -23,7 +23,7 @@ public class UpdateUserController : ControllerBase
 
         // update user data
 
-        UserResponseDTO responseData = new UserResponseDTO()
+        UserResponseDto responseData = new UserResponseDto()
         {
             Username = userToUpdate.Username,
             Email = userToUpdate.Email,

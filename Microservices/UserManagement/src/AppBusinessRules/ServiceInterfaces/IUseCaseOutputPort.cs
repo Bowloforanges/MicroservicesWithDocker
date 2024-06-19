@@ -3,8 +3,8 @@ using Entities;
 
 namespace ServiceInterfaces;
 
-public interface IUseCaseOutputPort<U>
-    where U : DtoBase
+public interface IUseCaseOutputPort<T>
+    where T : DtoBase
 {
-    public Task<GenericHttpResponse> Handle(U inputData);
+    public Task<GenericHttpResponse> Handle(User inputData);
 }

@@ -9,5 +9,8 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Controllers\Controllers.csproj" />
+    <ProjectReference Include="..\..\AppBusinessRules\ServiceImplementations\ServiceImplementations.csproj" />
+    <ProjectReference Include="..\EFCore\EFCore.csproj" />
+    <ProjectReference Include="..\Presenters\Presenters.csproj" />
   </ItemGroup>
 </Project>

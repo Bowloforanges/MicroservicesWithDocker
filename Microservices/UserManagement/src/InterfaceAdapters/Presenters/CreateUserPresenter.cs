@@ -1,4 +1,5 @@
 using Dto;
+using Dto.Extensions;
 using Entities;
 using Microsoft.Extensions.Logging;
 using ServiceInterfaces;
@@ -15,8 +16,12 @@ public class CreateUserPresenter : IUseCaseOutputPort<CreateUserRequestDto>
 
     public CreateUserPresenter(ILogger<CreateUserPresenter> logger) => (_logger) = (logger);
 
-    public Task<GenericHttpResponse> Handle(CreateUserRequestDto inputData)
+    public Task<GenericHttpResponse> Handle(User inputData)
     {
+        _responseMessage = "User Created.";
+        _responseStatusCode = 202;
+        _responseData = inputData.ToUserResponseDto();
+
         _response = new GenericHttpResponse()
         {
             Message = _responseMessage,

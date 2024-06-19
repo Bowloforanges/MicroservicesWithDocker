@@ -1,10 +1,10 @@
 using Dto.Abstractions;
-using Microsoft.AspNetCore.Mvc;
+using Entities;
 
 namespace ServiceInterfaces;
 
-public interface IUseCaseInputPort<T, U>
-    where U : DtoBase
+public interface IUseCaseInputPort<T>
+    where T : DtoBase
 {
-    public Task Handle(U inputData);
+    public Task<GenericHttpResponse> Handle(T inputData);
 }

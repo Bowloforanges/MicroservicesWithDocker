@@ -1,4 +1,4 @@
-﻿using DTO;
+﻿using Dto;
 using Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -22,7 +22,7 @@ public class GetUsersController : ControllerBase
 
         //get from db, implement pagination
 
-        List<UserListElementResponseDTO> responseData = new List<UserListElementResponseDTO>();
+        List<UserListElementResponseDto> responseData = new List<UserListElementResponseDto>();
 
         GenericHttpResponse response = new GenericHttpResponse()
         {
