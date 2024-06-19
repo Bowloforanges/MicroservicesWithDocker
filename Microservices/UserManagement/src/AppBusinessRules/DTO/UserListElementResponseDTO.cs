@@ -1,4 +1,4 @@
-namespace Dto;
+namespace Dtos;
 
 public class UserListElementResponseDto : UserResponseDto
 {
