@@ -1,5 +1,5 @@
-using Dto;
-using Dto.Extensions;
+using Dtos;
+using Dtos.Extensions;
 using Entities;
 using Microsoft.Extensions.Logging;
 using ServiceInterfaces;

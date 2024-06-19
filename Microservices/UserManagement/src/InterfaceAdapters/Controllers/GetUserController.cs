@@ -1,7 +1,8 @@
-using Dto;
+using Dtos;
 using Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using ServiceInterfaces;
 
 namespace Controllers;
 
@@ -10,33 +11,23 @@ namespace Controllers;
 public class GetUserController : ControllerBase
 {
     private readonly ILogger<GetUserController> _logger;
+    private readonly IUseCaseInputPort<GetUserRequestDto> _interactor;
 
-    public GetUserController(ILogger<GetUserController> logger) => (_logger) = (logger);
+    public GetUserController(
+        ILogger<GetUserController> logger,
+        IUseCaseInputPort<GetUserRequestDto> interactor
+    ) => (_logger, _interactor) = (logger, interactor);
 
-    [HttpGet("users/{userId}")]
+    [HttpGet("users/{guid}")]
     //UseAuthorization
-    public async Task<IActionResult> GetUserById(Guid userId)
+    public async Task<IActionResult> GetUserById([FromRoute] Guid guid)
     {
         await Task.Delay(1);
 
-        _logger.LogInformation($"User with userId: {userId}");
+        _logger.LogInformation($"User with userId: {guid}");
 
-        //get user from DB
+        var result = await _interactor.Handle(new GetUserRequestDto { Guid = guid });
 
-        UserResponseDto responseData = new UserResponseDto()
-        {
-            Username = "dummy_username",
-            Email = "dummy@email.com",
-            CreatedAt = DateTime.UtcNow
-        };
-
-        GenericHttpResponse response = new GenericHttpResponse()
-        {
-            Message = "",
-            StatusCode = 200,
-            Data = responseData
-        };
-
-        return Ok(response);
+        return Ok(result);
     }
 }

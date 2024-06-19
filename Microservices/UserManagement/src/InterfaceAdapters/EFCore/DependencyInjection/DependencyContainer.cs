@@ -10,6 +10,7 @@ public static class DependencyContainer
     public static IServiceCollection AddEFCore(this IServiceCollection services)
     {
         services.AddScoped<ICreationRepository<User>, CreateUserRepository>();
+        services.AddScoped<IRetrievalRepository<User>, UserRetrievalRepository>();
         services.AddSingleton<IUnitOfWork<User>, UserUnitOfWork>();
 
         return services;

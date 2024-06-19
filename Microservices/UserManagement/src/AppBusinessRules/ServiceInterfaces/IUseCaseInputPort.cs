@@ -1,4 +1,4 @@
-using Dto.Abstractions;
+using Dtos.Abstractions;
 using Entities;
 
 namespace ServiceInterfaces;
