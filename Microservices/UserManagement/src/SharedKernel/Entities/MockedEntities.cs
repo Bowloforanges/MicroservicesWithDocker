@@ -13,6 +13,17 @@ public static class MockedEntities
         };
     }
 
+    public static User UpdatedSingleUser(Guid guid)
+    {
+        return new User()
+        {
+            Guid = guid,
+            Username = "Mocked_updated_username",
+            Email = "mocked_updated@email.com",
+            CreatedAt = DateTime.MinValue,
+        };
+    }
+
     public static List<User> MultipleUsers()
     {
         User user1 = new User()

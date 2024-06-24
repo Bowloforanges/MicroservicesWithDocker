@@ -2,6 +2,7 @@ using Dto;
 using Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using ServiceInterfaces;
 
 namespace Controllers;
 
@@ -10,10 +11,14 @@ namespace Controllers;
 public class UpdateUserController : ControllerBase
 {
     private readonly ILogger<GetUserController> _logger;
+    private readonly IUseCaseInputPort<UpdateUserRequestDto> _interactor;
 
-    public UpdateUserController(ILogger<GetUserController> logger) => (_logger) = (logger);
+    public UpdateUserController(
+        ILogger<GetUserController> logger,
+        IUseCaseInputPort<UpdateUserRequestDto> interactor
+    ) => (_logger, _interactor) = (logger, interactor);
 
-    [HttpPut("users/{userId}")]
+    [HttpPut("users")]
     //UseAuthorization
     public async Task<IActionResult> UpdateUser(UpdateUserRequestDto userToUpdate)
     {
@@ -22,21 +27,8 @@ public class UpdateUserController : ControllerBase
         _logger.LogInformation($"Updated user.");
 
         // update user data
+        var result = await _interactor.Handle(userToUpdate);
 
-        UserResponseDto responseData = new UserResponseDto()
-        {
-            Username = userToUpdate.Username,
-            Email = userToUpdate.Email,
-            CreatedAt = DateTime.Now
-        };
-
-        GenericHttpResponse response = new GenericHttpResponse()
-        {
-            Message = "",
-            StatusCode = 200,
-            Data = responseData
-        };
-
-        return Ok(response);
+        return Ok(result);
     }
 }

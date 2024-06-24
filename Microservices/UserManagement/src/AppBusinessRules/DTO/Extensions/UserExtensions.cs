@@ -23,6 +23,16 @@ public static class UserExtensions
         };
     }
 
+    public static User ToUser(this UpdateUserRequestDto requestDTO)
+    {
+        return new User()
+        {
+            Guid = requestDTO.Guid,
+            Username = requestDTO.Username,
+            Email = requestDTO.Email,
+        };
+    }
+
     public static UserResponseDto ToUserResponseDto(this User userData)
     {
         return new UserResponseDto()
