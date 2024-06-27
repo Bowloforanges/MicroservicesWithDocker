@@ -24,6 +24,17 @@ public static class MockedEntities
         };
     }
 
+    public static User DeletedSingleUser(Guid guid)
+    {
+        return new User()
+        {
+            Guid = guid,
+            Username = "deleted_username",
+            Email = "deleted_updated@email.com",
+            CreatedAt = DateTime.MinValue,
+        };
+    }
+
     public static List<User> MultipleUsers()
     {
         User user1 = new User()
