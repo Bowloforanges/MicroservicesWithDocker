@@ -14,6 +14,7 @@ public static class DependencyContainer
         services.AddScoped<IUseCaseInputPort<GetAllUsersRequestDto>, GetAllUsersInteractor>();
         services.AddScoped<IUseCaseInputPort<UpdateUserRequestDto>, UpdateUserInteractor>();
         services.AddScoped<IUseCaseInputPort<DeleteUserRequestDto>, DeleteUserInteractor>();
+        services.AddScoped<IUseCaseInputPort<UpdatePasswordRequestDto>, UpdatePasswordInteractor>();
 
         return services;
     }

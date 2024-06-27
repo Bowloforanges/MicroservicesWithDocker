@@ -14,6 +14,8 @@ public static class DependencyContainer
         services.AddScoped<IRetrievalRepository<User>, UserRetrievalRepository>();
         services.AddScoped<IUpdateRepository<User>, UpdateUserRepository>();
         services.AddScoped<IDeletionRepository<User>, UserDeletionRepository>();
+        services.AddScoped<IPasswordRepository<User>, PasswordChangeRepository>();
+
         services.AddSingleton<IUnitOfWork<User>, UserUnitOfWork>();
 
         return services;
