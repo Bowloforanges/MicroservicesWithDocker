@@ -1,0 +1,11 @@
+name: microservices-with-docker
+
+services:
+  jenkins-service:
+    image: jenkins/jenkins
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    volumes:
+      - ./Volumes/Jenkins:/var/jenkins_home
+    restart: always
